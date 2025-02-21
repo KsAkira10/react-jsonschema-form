@@ -45,6 +45,9 @@
     },
     {
       "path": "./packages/snapshot-tests"
-    }
+    },
+    {
+      "path": "./packages/mistica"
+    },
   ]
 }
