@@ -42,13 +42,16 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
   });
   const [FormComponent, setFormComponent] = useState<ComponentType<FormProps>>(withTheme({}));
   const [otherFormProps, setOtherFormProps] = useState<Partial<FormProps>>({});
+  const [skin, setSkin] = useState<string | null>('Vivo_New');
 
   const playGroundFormRef = useRef<any>(null);
 
   const onThemeSelected = useCallback(
     (theme: string, { stylesheet, theme: themeObj }: ThemesType) => {
+      console.log({ themeObj });
       setTheme(theme);
       setSubtheme(null);
+      setSkin('Vivo_New');
       setFormComponent(withTheme(themeObj));
       setStylesheet(stylesheet);
     },
@@ -144,6 +147,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
         themes={themes}
         theme={theme}
         subtheme={subtheme}
+        skin={skin}
         validators={validators}
         validator={validator}
         liveSettings={liveSettings}
@@ -155,6 +159,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
         setValidator={setValidator}
         setLiveSettings={setLiveSettings}
         setShareURL={setShareURL}
+        setSkin={setSkin}
       />
       <Editors
         formData={formData}
@@ -182,6 +187,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
                 border: 0,
               }}
               theme={theme}
+              skin={skin}
             >
               <FormComponent
                 {...otherFormProps}

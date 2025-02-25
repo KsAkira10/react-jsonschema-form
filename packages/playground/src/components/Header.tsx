@@ -10,6 +10,7 @@ import Selector from './Selector';
 import ValidatorSelector from './ValidatorSelector';
 import SubthemeSelector from './SubthemeSelector';
 import RawValidatorTest from './RawValidatorTest';
+import SkinSelector from './SkinSelector';
 
 const HeaderButton: React.FC<
   {
@@ -236,6 +237,7 @@ type HeaderProps = {
   themes: { [themeName: string]: ThemesType };
   theme: string;
   subtheme: string | null;
+  skin: string | null;
   validators: {
     [validatorName: string]: ValidatorType<any, RJSFSchema, any>;
   };
@@ -249,6 +251,7 @@ type HeaderProps = {
   setValidator: React.Dispatch<React.SetStateAction<string>>;
   setLiveSettings: React.Dispatch<React.SetStateAction<LiveSettings>>;
   setShareURL: React.Dispatch<React.SetStateAction<string | null>>;
+  setSkin: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 export default function Header({
@@ -259,6 +262,7 @@ export default function Header({
   themes,
   theme,
   subtheme,
+  skin,
   validators,
   validator,
   liveSettings,
@@ -270,6 +274,7 @@ export default function Header({
   setValidator,
   setLiveSettings,
   setShareURL,
+  setSkin,
 }: HeaderProps) {
   const onSubthemeSelected = useCallback(
     (subtheme: any, { stylesheet }: { stylesheet: any }) => {
@@ -277,6 +282,13 @@ export default function Header({
       setStylesheet(stylesheet);
     },
     [setSubtheme, setStylesheet]
+  );
+
+  const onSkinSelected = useCallback(
+    (skin: any) => {
+      setSkin(skin);
+    },
+    [setSkin]
   );
 
   const onValidatorSelected = useCallback(
@@ -352,6 +364,9 @@ export default function Header({
           <ThemeSelector themes={themes} theme={theme} select={onThemeSelected} />
           {themes[theme] && themes[theme].subthemes && (
             <SubthemeSelector subthemes={themes[theme].subthemes!} subtheme={subtheme} select={onSubthemeSelected} />
+          )}
+          {themes[theme] && themes[theme].skins && (
+            <SkinSelector skins={themes[theme].skins!} skin={skin} select={onSkinSelected} />
           )}
           <ValidatorSelector validators={validators} validator={validator} select={onValidatorSelected} />
           <HeaderButtons playGroundFormRef={playGroundFormRef} />

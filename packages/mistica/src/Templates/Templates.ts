@@ -1,4 +1,6 @@
 import { FormContextType, RJSFSchema, StrictRJSFSchema, TemplatesType } from '@rjsf/utils';
+import SubmitButton from '../SubmitButton';
+import BaseInputTemplate from '../BaseInputTemplate';
 
 export function generateTemplates<
   T = any,
@@ -8,15 +10,15 @@ export function generateTemplates<
   return {
     // ArrayFieldItemTemplate: undefined,
     // ArrayFieldTemplate: undefined,
-    // BaseInputTemplate: undefined,
-    // ButtonTemplates: {
-    //   AddButton: undefined,
-    //   CopyButton: undefined,
-    //   MoveDownButton: undefined,
-    //   MoveUpButton: undefined,
-    //   RemoveButton: undefined,
-    //   SubmitButton: undefined,
-    // },
+    BaseInputTemplate,
+    ButtonTemplates: {
+      // AddButton: undefined,
+      // CopyButton: undefined,
+      // MoveDownButton: undefined,
+      // MoveUpButton: undefined,
+      // RemoveButton: undefined,
+      SubmitButton,
+    },
     // DescriptionFieldTemplate: undefined,
     // ErrorListTemplate: undefined,
     // FieldErrorTemplate: undefined,
