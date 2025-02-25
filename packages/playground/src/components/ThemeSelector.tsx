@@ -7,6 +7,8 @@ export interface ThemesType {
   theme: any;
   stylesheet: string;
   subthemes?: SubthemesType;
+  skins?: { [key: string]: any };
+  colorSchemes?: { [key: string]: any };
 }
 
 interface ThemeSelectorProps {

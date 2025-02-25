@@ -12,6 +12,7 @@ import { ThemesType } from './ThemeSelector';
 import Editors from './Editors';
 import SpecialInput from './SpecialInput';
 import { Sample } from '../samples/Sample';
+import { ColorScheme } from '@telefonica/mistica';
 
 export interface PlaygroundProps {
   themes: { [themeName: string]: ThemesType };
@@ -42,6 +43,8 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
   });
   const [FormComponent, setFormComponent] = useState<ComponentType<FormProps>>(withTheme({}));
   const [otherFormProps, setOtherFormProps] = useState<Partial<FormProps>>({});
+  const [skin, setSkin] = useState<string | null>('Vivo_New');
+  const [colorScheme, setColorScheme] = useState<ColorScheme | null | undefined>('auto');
 
   const playGroundFormRef = useRef<any>(null);
 
@@ -49,6 +52,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
     (theme: string, { stylesheet, theme: themeObj }: ThemesType) => {
       setTheme(theme);
       setSubtheme(null);
+      setSkin('Vivo_New');
       setFormComponent(withTheme(themeObj));
       setStylesheet(stylesheet);
     },
@@ -144,6 +148,8 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
         themes={themes}
         theme={theme}
         subtheme={subtheme}
+        skin={skin}
+        colorScheme={colorScheme}
         validators={validators}
         validator={validator}
         liveSettings={liveSettings}
@@ -155,6 +161,8 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
         setValidator={setValidator}
         setLiveSettings={setLiveSettings}
         setShareURL={setShareURL}
+        setSkin={setSkin}
+        setColorScheme={setColorScheme}
       />
       <Editors
         formData={formData}
@@ -182,6 +190,8 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
                 border: 0,
               }}
               theme={theme}
+              skin={skin}
+              colorScheme={colorScheme}
             >
               <FormComponent
                 {...otherFormProps}

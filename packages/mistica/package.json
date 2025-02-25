@@ -32,7 +32,7 @@
     "node": ">=14"
   },
   "peerDependencies": {
-    "@telefonica/mistica": "15.17.0",
+    "@telefonica/mistica": "^16.14.0",
     "@rjsf/core": "^5.24.x",
     "@rjsf/utils": "^5.24.x",
     "react": ">=18"
@@ -48,7 +48,7 @@
     "@rjsf/snapshot-tests": "^5.24.3",
     "@rjsf/utils": "^5.24.3",
     "@rjsf/validator-ajv8": "^5.24.3",
-    "@telefonica/mistica": "15.17.0",
+    "@telefonica/mistica": "^16.14.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",

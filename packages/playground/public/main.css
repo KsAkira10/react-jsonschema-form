@@ -1,0 +1,29 @@
+html {
+  font-size: 16px; /* or 100% */
+}
+
+body, iframe {
+  font-family: -apple-system, 'Vivo Type', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-color: var(--v16_14_1vqcj1ig);
+}
+
+input,
+textarea,
+pre,
+code {
+  font: inherit;
+}
+
+* {
+  font-family: -apple-system, 'Vivo Type', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+/**
+ * To enable Dynamic Type in apple devices:
+ * See: https://dev.to/colingourlay/how-to-support-apple-s-dynamic-text-in-your-web-content-with-css-40c0
+ */
+@supports (font: -apple-system-body) {
+  html {
+    font: -apple-system-body !important;
+  }
+}

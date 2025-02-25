@@ -1,10 +1,10 @@
 import { FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
 import { ThemeProps } from '@rjsf/core';
 
-import { generateTemplates } from '../Templates';
-import { generateWidgets } from '../Widgets';
+import { generateTemplates } from './templates';
+import { generateWidgets } from './widgets';
 
-export function generateTheme<
+export function generateComponents<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any
@@ -15,4 +15,4 @@ export function generateTheme<
   };
 }
 
-export default generateTheme();
+export default generateComponents();

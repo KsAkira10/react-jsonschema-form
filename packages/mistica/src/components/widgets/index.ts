@@ -1,6 +1,6 @@
 import { FormContextType, RegistryWidgetsType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
-
-import SelectWidget from '../SelectWidget/SelectWidget';
+import TextWidget from './TextWidget';
+import TextareaWidget from './TextareaWidget';
 
 export function generateWidgets<
   T = any,
@@ -8,7 +8,8 @@ export function generateWidgets<
   F extends FormContextType = any
 >(): RegistryWidgetsType<T, S, F> {
   return {
-    SelectWidget,
+    TextWidget,
+    TextareaWidget,
   };
 }
 

@@ -8,6 +8,8 @@ import Frame, { FrameComponentProps, FrameContextConsumer } from 'react-frame-co
 import { __createChakraFrameProvider } from '@rjsf/chakra-ui';
 import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
 import { __createFluentUIRCFrameProvider } from '@rjsf/fluentui-rc';
+import { __createMisticaFrameProvider } from '@rjsf/mistica';
+import { ColorScheme } from '@telefonica/mistica';
 
 /*
 Adapted from https://github.com/mui-org/material-ui/blob/master/docs/src/modules/components/DemoSandboxed.js
@@ -41,6 +43,8 @@ interface DemoFrameProps extends FrameComponentProps {
    * children being of the other valid ReactNode types, undefined and string as it always contains an RJSF `Form`
    */
   children: ReactElement;
+  skin?: string | null;
+  colorScheme?: ColorScheme | null;
 }
 
 export default function DemoFrame(props: DemoFrameProps) {
@@ -84,7 +88,7 @@ export default function DemoFrame(props: DemoFrameProps) {
     setContainer(instanceRef.current.contentDocument.body);
     setWindow(() => instanceRef.current.contentWindow);
   }, []);
-
+  let headers: ReactNode = head;
   let body: ReactNode = children;
   if (theme === 'material-ui-4') {
     body = ready ? (
@@ -107,12 +111,10 @@ export default function DemoFrame(props: DemoFrameProps) {
     ) : null;
   } else if (theme === 'fluent-ui') {
     // TODO: find a better way to render fluent-ui in an iframe, if we need to do so.
-
-    body = (
+    headers = (
       <>
         <style dangerouslySetInnerHTML={{ __html: 'label { font-weight: normal; }' }} />
         {head}
-        {children}
       </>
     );
   } else if (theme === 'fluentui-rc') {
@@ -123,10 +125,20 @@ export default function DemoFrame(props: DemoFrameProps) {
     body = ready ? (
       <AntdStyleProvider container={instanceRef.current.contentWindow['demo-frame-jss']}>{children}</AntdStyleProvider>
     ) : null;
+  } else if (theme === 'mistica') {
+    headers = (
+      <>
+        <link rel='stylesheet' href='/reset.css' />
+        <link rel='stylesheet' href='/vivo-font.css' />
+        <link rel='stylesheet' href='/main.css' />
+        {head}
+      </>
+    );
+    body = <FrameContextConsumer>{__createMisticaFrameProvider(props)}</FrameContextConsumer>;
   }
 
   return (
-    <Frame ref={handleRef} contentDidMount={onContentDidMount} head={head} {...frameProps}>
+    <Frame ref={handleRef} contentDidMount={onContentDidMount} head={headers} {...frameProps}>
       <div id='demo-frame-jss' />
       {body}
     </Frame>
